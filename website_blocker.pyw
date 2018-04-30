@@ -1,15 +1,15 @@
 import time
 from datetime import datetime as dt
 
-hosts_temp="hosts"
+hosts_temp=r"E:\PROJET\PYTHON\Website Blocker\hosts"
 hosts_path=r"C:\Windows\System32\drivers\etc\hosts" # we add r to pass a row string
 redirect="127.0.0.1"
-website_list=["www.bewiv.com","bewiv.com"]
+website_list=["www.bewiv.com","bewiv.com","www.facebook.com","facebook.com","www.twitter.com","twitter.com"]
 
 while True:
     if dt(dt.now().year, dt.now().month, dt.now().day, 8) < dt.now() < dt(dt.now().year, dt.now().month, dt.now().day, 16):
        print("working time...")
-       with open(hosts_temp, 'r+') as file:
+       with open(hosts_path, 'r+') as file:
            content=file.read()
            for website in website_list:
                if website in content:
@@ -17,7 +17,7 @@ while True:
                else:
                    file.write(redirect+" "+website+"\n")
     else:
-        with open(hosts_temp,'r+') as file:
+        with open(hosts_path,'r+') as file:
             content=file.readlines()
             file.seek(0) # to put all the text in the begin
             for line in content:
